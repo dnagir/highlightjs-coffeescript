@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Specs</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="helpers/qunit.css" />
+    <script src="helpers/qunit.js"></script>
+
+    <script src="../lib/highlightjs/highlight.js"></script>
+    <script src="../lib/highlight-coffee.js"></script>
+
+    <script>
+      function highlight(coff) {
+        var $fixture = $('#qunit-fixture').text(coff);
+        hljs.highlightBlock($fixture[0]);
+        console.debug($fixture.html());
+        return $fixture;
+      };
+
+      function check(coff, claz) {
+        return highlight(coff).find("." + claz).length > 0;
+      };
+
+      $(function(){
+        module("Basic stuff highlighting");
+
+        test('simple', function() {
+          ok( check("a if b", 'keyword'), 'keyword' );
+          ok( check("123", 'number'), 'number' );
+          ok( check("a = 123", 'number'), 'number in assignment' );
+        });
+        test('arrow', function() {
+          ok( check(" -> ", 'function'), 'arrow' );
+          ok( check(" => ", 'function'), 'fat arrow' );
+        });
+
+
+
+        module("Function highlighting");
+
+        test('assign with one param', function() {
+          ok( check("foo = (bar) -> 1", 'function'), 'highlights the arrow');
+          ok( check("foo = (bar) => 1", 'function'), 'highlights the fat arrow');
+          ok( check("foo = (bar) -> 1", 'params'), 'params for arrow');
+          ok( check("foo = (bar) => 1", 'params'), 'params for fat arrow');
+        });
+        test('calling functions', function(){
+          ok( check("foo('bar')", 'string'), 'format param as string');
+          ok( check("foo(123)", 'number'), 'format param as number');
+          ok( check("foo(if a then b else c)", 'keyword'), 'format param as keyword');
+        });
+
+
+        module('Comments highlighting');
+        test('multiline comments', function(){
+          ok( check("###\nline1\line2\n###", 'comment'), '### multiline');
+          ok( check("# One liner", 'comment'), '# One liner');
+          ok( check("# Econ 101\nif", 'keyword'), 'One liner keeps on formatting');
+        });
+
+        module('Strings');
+        test('double-quotes interpolation', function(){
+          ok( check('"#{abc}"', 'subst'), 'simple interpolation');
+          ok( check('"#{if}"', 'keyword'), 'keywords');
+          ok( check('"#{123}"', 'number'), 'numbers');
+        });
+
+        test('multiline strings', function(){
+          var s = "'''\n" +
+                  "  foo bar\n" +
+                  "'''";
+          ok( check(s, 'string'), "''' string")
+        });
+      });
+    </script>
+
+  </head>
+  <body>
+    <h1 id="qunit-header">QUnit example</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture"></div>
+  </body>
+</html>
