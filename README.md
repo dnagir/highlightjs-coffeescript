@@ -4,6 +4,8 @@ This projec aims to support syntax [highlighting](http://softwaremaniacs.org/sof
 
 If you have any questions please contact me [@dnagir](http://www.ApproachE.com).
 
+You can see example with all available styles and some code snippets if you clone the repo and open the `lib/index.html`.
+
 ## Install
 Just drop the `lib/highlight-coffee.js` into your project.
 You can use `coffe` class on the `code` tag to explicitly set the language.
@@ -18,6 +20,12 @@ Please be sure to have [highlight.js](http://softwaremaniacs.org/soft/highlight/
 
 
 Pull requests are very welcome!
+
+## TODO List
+
+- support heregexes
+- handle formal arguments only (do not highlight actual arguments in function calls, only definitions)
+- highlight the identifier that is assigned a function (like on the CoffeeScript site)
 
 ## Licensed under WTFPL
 
