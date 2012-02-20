@@ -8,7 +8,7 @@ You can see example with all available styles and some code snippets if you clon
 
 ## Install
 Just drop the `lib/highlight-coffee.js` into your project.
-You can use `coffe` class on the `code` tag to explicitly set the language.
+You can use `coffee` class on the `code` tag to explicitly set the language.
 Please be sure to have [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) included before.
 
 
