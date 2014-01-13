@@ -1,5 +1,8 @@
 # CoffeeScript Syntax highlighting for Highlight.js
 
+**NOTE:** the original implementation had been merged into the main highlight.js. This repo is not longer maintained.
+Please refer to https://github.com/isagalaev/highlight.js/blob/master/src/languages/coffeescript.js
+
 This projec aims to support syntax [highlighting](http://softwaremaniacs.org/soft/highlight/en/) for [CoffeeScript](http://jashkenas.github.com/coffee-script/).
 
 If you have any questions please contact me [@dnagir](http://www.ApproachE.com).
